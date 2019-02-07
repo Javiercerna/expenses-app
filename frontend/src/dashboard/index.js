@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Navbar from './Navbar'
-import NewExpenseModal from './NewExpenseModal'
+import Navbar from './Navbar';
+import NewExpenseModal from './NewExpenseModal';
+import ExpensesSummary from './ExpensesSummary';
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    margin: "8px",
+    padding: 15
   },
 });
 
@@ -39,6 +40,7 @@ class Dashboard extends Component {
               Registrar nuevo pago
             </Button>
             <NewExpenseModal open={this.state.modal_open} onClose={this.handleClose} />
+            <ExpensesSummary />
           </Grid>
         </Grid>
       </div>
