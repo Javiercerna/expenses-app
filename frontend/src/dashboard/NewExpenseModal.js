@@ -7,6 +7,43 @@ import DialogActions from '@material-ui/core/DialogActions';
 import NewExpense from './NewExpense';
 
 class NewExpenseModal extends Component {
+  constructor(props) {
+    super(props);
+    this.handleTextFieldChange = this.handleTextFieldChange.bind(this);
+    this.state = {
+      name: '',
+      date: '',
+      money_pen: 0,
+      money_usd: 0,
+      type: '',
+      type_options: [],
+      financing: '',
+      financing_options: []
+    }
+  }
+
+  componentDidMount() {
+    fetch('http://127.0.0.1:8000/expense_types/')
+    .then(results => {
+      return results.json();
+    }).then(data => {
+      this.setState({type_options: data.results.map(option => option.name)});
+    });
+
+    fetch('http://127.0.0.1:8000/expense_financings/')
+    .then(results => {
+      return results.json();
+    }).then(data => {
+      this.setState({financing_options: data.results.map(option => option.name)});
+    });
+  }
+
+  handleTextFieldChange(name, value) {
+    this.setState({
+      [name]: value,
+    });
+  }
+
   handleClose = () => {
     this.props.onClose(this.props.selectedValue);
   };
@@ -18,7 +55,16 @@ class NewExpenseModal extends Component {
       <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
         <DialogTitle style={{display: 'flex', justifyContent: 'center'}}>Nuevo Pago</DialogTitle>
         <DialogContent>
-          <NewExpense />
+          <NewExpense
+            name={this.state.name}
+            date={this.state.date}
+            money_pen={this.state.money_pen}
+            money_usd={this.state.money_usd}
+            type={this.state.type}
+            type_options={this.state.type_options}
+            financing={this.state.financing}
+            financing_options={this.state.financing_options}
+            onTextFieldChange={this.handleTextFieldChange} />
         </DialogContent>
         <DialogActions>
            <Button onClick={this.handleClose} color="primary">

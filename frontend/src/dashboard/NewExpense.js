@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
@@ -14,20 +15,8 @@ const styles = theme => ({
 });
 
 class NewExpense extends Component {
-  state = {
-    name: '',
-    date: '',
-    money_pen: 0,
-    money_usd: 0,
-    type: '',
-    financing: ''
-  };
-
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value,
-    });
-  };
+  handleChange = ({ target: {name, value} }) =>
+    this.props.onTextFieldChange(name, value);
 
   render() {
     const { classes } = this.props;
@@ -35,61 +24,85 @@ class NewExpense extends Component {
     return (
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
-          id="name"
+          name="name"
           label="Concepto"
           className={classes.textField}
-          value={this.state.name}
-          onChange={this.handleChange('name')}
+          value={this.props.name}
+          onChange={this.handleChange}
           fullWidth
           margin="normal"
         />
         <TextField
-          id="date"
+          name="date"
           label="Fecha"
           className={classes.textField}
-          value={this.state.date}
-          onChange={this.handleChange('date')}
+          value={this.props.date}
+          onChange={this.handleChange}
           fullWidth
           margin="normal"
         />
         <TextField
-          id="money_pen"
+          name="money_pen"
           label="Monto en soles"
           className={classes.textField}
-          value={this.state.money_pen}
-          onChange={this.handleChange('money_pen')}
+          value={this.props.money_pen}
+          onChange={this.handleChange}
           fullWidth
           type="number"
           margin="normal"
         />
         <TextField
-          id="money_usd"
+          name="money_usd"
           label="Monto en dólares"
           className={classes.textField}
-          value={this.state.money_usd}
-          onChange={this.handleChange('money_usd')}
+          value={this.props.money_usd}
+          onChange={this.handleChange}
           fullWidth
           type="number"
           margin="normal"
         />
         <TextField
-          id="type"
+          name="type"
+          select
           label="Tipo de gasto"
           className={classes.textField}
-          value={this.state.type}
-          onChange={this.handleChange('type')}
+          value={this.props.type}
+          onChange={this.handleChange}
+          SelectProps={{
+            MenuProps: {
+              className: classes.menu,
+            },
+          }}
           fullWidth
           margin="normal"
-        />
+        >
+          {this.props.type_options.map(option => (
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
+          ))}
+        </TextField>
         <TextField
-          id="financing"
+          name="financing"
+          select
           label="Modo de financiamiento"
           className={classes.textField}
-          value={this.state.financing}
-          onChange={this.handleChange('financing')}
+          value={this.props.financing}
+          onChange={this.handleChange}
+          SelectProps={{
+            MenuProps: {
+              className: classes.menu,
+            },
+          }}
           fullWidth
           margin="normal"
-        />
+        >
+          {this.props.financing_options.map(option => (
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
+          ))}
+        </TextField>
       </form>
     );
   }
