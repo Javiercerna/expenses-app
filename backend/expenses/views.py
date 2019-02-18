@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User, Group
-from django.shortcuts import render
 from rest_framework import viewsets
 from .models import Expense, ExpenseFinancing, ExpenseType
 from .serializers import UserSerializer, GroupSerializer, ExpenseSerializer, \
@@ -44,7 +43,3 @@ class ExpenseTypeViewSet(viewsets.ModelViewSet):
     """
     queryset = ExpenseType.objects.all().order_by('name')
     serializer_class = ExpenseTypeSerializer
-
-
-def index(request):
-    return render(request, 'expenses/dashboard.html')

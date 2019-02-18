@@ -39,6 +39,7 @@ class NewExpense extends Component {
           value={this.props.date}
           onChange={this.handleChange}
           fullWidth
+          type="date"
           margin="normal"
         />
         <TextField

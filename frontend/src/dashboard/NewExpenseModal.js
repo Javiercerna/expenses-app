@@ -46,6 +46,36 @@ class NewExpenseModal extends Component {
 
   handleClose = () => {
     this.props.onClose(this.props.selectedValue);
+    this.resetState();
+  };
+
+  handleRegister = () => {
+    fetch('http://127.0.0.1:8000/expenses/',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    }).then(response => response.json())
+    .then(response => console.log('Success:', JSON.stringify(response)))
+    .catch(error => console.error('Error:', error));
+
+    this.props.onClose(this.props.selectedValue);
+    this.resetState();
+  };
+
+  resetState = () => {
+    this.setState({
+      name: '',
+      date: '',
+      money_pen: 0,
+      money_usd: 0,
+      type: '',
+      type_options: [],
+      financing: '',
+      financing_options: []
+    });
   };
 
   render() {
@@ -70,7 +100,7 @@ class NewExpenseModal extends Component {
            <Button onClick={this.handleClose} color="primary">
              Cancelar
            </Button>
-           <Button onClick={this.handleClose} color="primary" autoFocus>
+           <Button onClick={this.handleRegister} color="primary" autoFocus>
              Registrar
            </Button>
          </DialogActions>

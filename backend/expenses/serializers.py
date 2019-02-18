@@ -16,12 +16,12 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ExpenseSerializer(serializers.ModelSerializer):
-    type = serializers.StringRelatedField()
-    financing = serializers.StringRelatedField()
+    type = serializers.SlugRelatedField(queryset=ExpenseType.objects.all(), slug_field='name')
+    financing = serializers.SlugRelatedField(queryset=ExpenseFinancing.objects.all(), slug_field='name')
 
     class Meta:
         model = Expense
-        fields = ('name', 'date', 'money_pen', 'money_usd', 'type', 'financing')
+        fields = ('url', 'name', 'date', 'money_pen', 'money_usd', 'type', 'financing')
 
 
 class ExpenseFinancingSerializer(serializers.ModelSerializer):
