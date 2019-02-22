@@ -4,7 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Navbar from './Navbar';
 import NewExpenseModal from './NewExpenseModal';
-import ExpensesGraph from './ExpensesGraph';
+import LatestExpensesGraph from './LatestExpensesGraph';
+import ExpensesFinancingGraph from './ExpensesFinancingGraph';
 import ExpensesSummary from './ExpensesSummary';
 
 const styles = theme => ({
@@ -42,13 +43,13 @@ class Dashboard extends Component {
             </Button>
             <Grid container spacing={16}>
               <Grid item xs={4}>
-                <ExpensesGraph graph_name="latest_expenses"/>
+                <LatestExpensesGraph graph_name="latest_expenses"/>
               </Grid>
               <Grid item xs={4}>
-                <ExpensesGraph graph_name="expenses_distribution"/>
+                <LatestExpensesGraph graph_name="expenses_distribution"/>
               </Grid>
               <Grid item xs={4}>
-                <ExpensesGraph graph_name="expenses_financing"/>
+                <ExpensesFinancingGraph graph_name="expenses_financing"/>
               </Grid>
             </Grid>
 

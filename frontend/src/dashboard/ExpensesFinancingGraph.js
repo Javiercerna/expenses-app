@@ -1,11 +1,9 @@
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import React, { Component } from 'react';
 
 import Plotly from 'plotly.js-dist';
 
 
-class ExpensesGraph extends Component {
+class ExpensesFinancingGraph extends Component {
   constructor() {
     super();
     this.state = {
@@ -65,4 +63,4 @@ class ExpensesGraph extends Component {
   }
 }
 
-export default ExpensesGraph;
+export default ExpensesFinancingGraph;
