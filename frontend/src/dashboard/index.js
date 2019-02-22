@@ -4,8 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Navbar from './Navbar';
 import NewExpenseModal from './NewExpenseModal';
-import LatestExpensesGraph from './LatestExpensesGraph';
-import ExpensesFinancingGraph from './ExpensesFinancingGraph';
+import ExpensesGraph from './ExpensesGraph';
+import * as ExpensesFinancingGraph from './ExpensesFinancingGraph';
+import * as LatestExpensesGraph from './LatestExpensesGraph';
 import ExpensesSummary from './ExpensesSummary';
 
 const styles = theme => ({
@@ -43,13 +44,25 @@ class Dashboard extends Component {
             </Button>
             <Grid container spacing={16}>
               <Grid item xs={4}>
-                <LatestExpensesGraph graph_name="latest_expenses"/>
+                <ExpensesGraph
+                manageExpenseData={LatestExpensesGraph.manageExpenseData}
+                formatDataForPlotly={LatestExpensesGraph.formatDataForPlotly}
+                title="Gastos de los últimos meses"
+                graph_name="latest_expenses"/>
               </Grid>
               <Grid item xs={4}>
-                <LatestExpensesGraph graph_name="expenses_distribution"/>
+                <ExpensesGraph
+                manageExpenseData={LatestExpensesGraph.manageExpenseData}
+                formatDataForPlotly={LatestExpensesGraph.formatDataForPlotly}
+                title="Distribución de gastos"
+                graph_name="expenses_distribution"/>
               </Grid>
               <Grid item xs={4}>
-                <ExpensesFinancingGraph graph_name="expenses_financing"/>
+                <ExpensesGraph
+                manageExpenseData={ExpensesFinancingGraph.manageExpenseData}
+                formatDataForPlotly={ExpensesFinancingGraph.formatDataForPlotly}
+                title="Modo de financiamiento"
+                graph_name="expenses_financing"/>
               </Grid>
             </Grid>
 
