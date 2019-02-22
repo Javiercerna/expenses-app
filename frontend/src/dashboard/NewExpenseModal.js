@@ -72,9 +72,7 @@ class NewExpenseModal extends Component {
       money_pen: 0,
       money_usd: 0,
       type: '',
-      type_options: [],
-      financing: '',
-      financing_options: []
+      financing: ''
     });
   };
 
