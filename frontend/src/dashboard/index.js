@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import NewExpenseModal from './NewExpenseModal';
 import ExpensesGraph from './ExpensesGraph';
 import * as ExpensesFinancingGraph from './ExpensesFinancingGraph';
+import * as ExpensesDistributionGraph from './ExpensesDistributionGraph';
 import * as LatestExpensesGraph from './LatestExpensesGraph';
 import ExpensesSummary from './ExpensesSummary';
 
@@ -52,8 +53,8 @@ class Dashboard extends Component {
               </Grid>
               <Grid item xs={4}>
                 <ExpensesGraph
-                manageExpenseData={LatestExpensesGraph.manageExpenseData}
-                formatDataForPlotly={LatestExpensesGraph.formatDataForPlotly}
+                manageExpenseData={ExpensesDistributionGraph.manageExpenseData}
+                formatDataForPlotly={ExpensesDistributionGraph.formatDataForPlotly}
                 title="Distribución de gastos"
                 graph_name="expenses_distribution"/>
               </Grid>
